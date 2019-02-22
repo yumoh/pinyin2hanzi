@@ -19,8 +19,8 @@ class DataLoader:
         self.index_to_pinyin = {v: k for k, v in self.pinyin_to_index.items()}
 
         # 单词的个数
-        self.char_numbers = len(self.char_to_index)
-        self.pinyin_numbers = len(self.pinyin_to_index)
+        self.char_numbers = len(self.char_to_index) + 1
+        self.pinyin_numbers = len(self.pinyin_to_index) + 1
         # 拼音的array
         self.data_pinyin_array = np.stack([self._pad_to_array([self.pinyin_to_index[i] for i in s])
                                            for s in self.data_pinyin])
@@ -31,6 +31,13 @@ class DataLoader:
                                          for s in self.data_char])
         # series length
         self.data_char_seq_len_array = np.stack([len(s) for s in self.data_char])
+
+    def __repr__(self):
+        return f"""data:{self.data_path}
+            series size:{self.max_data_len}
+            input data max length:{self.max_pinyin_seq_len} words:{self.pinyin_numbers}
+            target data max length:{self.max_char_seq_len} words:{self.char_numbers}
+            """
 
     def _load_to_py_to_char(self):
         data_py = []

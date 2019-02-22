@@ -66,6 +66,7 @@ def test_train():
     print(f'use {device}')
     print(f"loading data..")
     data_loader = DataLoader('./data/zh.tsv')
+    print(data_loader)
     print(f"building model...")
     ts_model = TransformRnnNet(data_loader.pinyin_numbers, data_loader.char_numbers)
     print(f"training...")
