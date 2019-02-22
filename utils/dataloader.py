@@ -25,12 +25,12 @@ class DataLoader:
         self.data_pinyin_array = np.stack([self._pad_to_array([self.pinyin_to_index[i] for i in s])
                                            for s in self.data_pinyin])
         # series length
-        self.data_pinyin_seq_len_array = np.stack([[len(s)] for s in self.data_pinyin])
+        self.data_pinyin_seq_len_array = np.stack([len(s) for s in self.data_pinyin])
         # 字符的array
         self.data_char_array = np.stack([self._pad_to_array([self.char_to_index[i] for i in s])
                                          for s in self.data_char])
         # series length
-        self.data_char_seq_len_array = np.stack([[len(s)] for s in self.data_char])
+        self.data_char_seq_len_array = np.stack([len(s) for s in self.data_char])
 
     def _load_to_py_to_char(self):
         data_py = []
